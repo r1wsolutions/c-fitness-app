@@ -284,10 +284,26 @@ const AuthPage = (props) =>{
                         <TextInput
                             style={[styles.inp,confirmedPWEntered & !confirmedPWValid && styles.onError]}
                             placeholder='Confirm Password'
-                            onChangeText={updateConfirmPasswordHandler}
-                            onBlur={confirmPasswordBurHandler}
+                            onChangeText={(val)=>{
+                                if(!isLoading)
+                                {
+                                    updateConfirmPasswordHandler(val)
+                                }
+                            }}
+                            onBlur={()=>{
+                                if(!isLoading)
+                                {
+                                    confirmPasswordBurHandler()
+                                }
+                            }}
                             ref={confirmedPWRef}
-                            onSubmitEditing={()=>{submitBtnRef.current.focus()}}
+                            onSubmitEditing={()=>{
+                                if(!isLoading)
+                                {
+                                    //submitBtnRef.current.focus()
+                                    onSubmitHandler()
+                                }
+                            }}
                             secureTextEntry={true}
                         />
                     </View>

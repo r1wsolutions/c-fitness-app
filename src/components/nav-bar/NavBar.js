@@ -5,14 +5,17 @@ import { useEffect,useRef} from 'react'
 import { useDispatch } from 'react-redux';
 import {authReducerActions} from '../../store/authReducerSlice'
 import {navBarReducerActions} from '../../store/navBarReduceSlice'
-import styles from './NavBarStyle'
- 
-const NavBar =() =>{
 
+import styles from './NavBarStyle'
+
+
+const NavBar =() =>{
+ 
     const dispatch = useDispatch()
     const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
     const slideAnim = useRef(new Animated.Value(-225)).current  // Initial value for left pos: 0
     
+
     useEffect(() => {
 
         Animated.parallel([

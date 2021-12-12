@@ -8,7 +8,7 @@ const initailAuthState = {
     signInFailed: false,
     autoSignOutTime: null,
     profile: null 
-}
+} 
 
 const authReducer = createSlice({
     name: 'authReducer',
@@ -26,7 +26,7 @@ const authReducer = createSlice({
             state.uid = action.payload.localId
             state.isSignedIn = true
             state.autoSignOutTime = new Date(Date.now()).getTime() + (parseInt(action.payload.expiresIn) * 1000) 
-           
+
             /*
             if(localStorage.getItem('authToken'))
             {

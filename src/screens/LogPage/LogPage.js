@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, Dimensions, Pressable } from 'react-native'
+import { StyleSheet, View, Text, TextInput, Dimensions, Pressable, ActivityIndicator } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import { Select } from '@mobile-reality/react-native-select-pro';
 import CustomText from '../../components/CustomText/CustomText';
@@ -15,6 +15,7 @@ const LogPage = () =>{
     const [exerciseNames,setExerciseNames] = useState([])
     const [exercise,setExercise] = useState('')
     const [reps,setReps] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(()=>{
         const tempArr = []
@@ -78,6 +79,7 @@ const LogPage = () =>{
         }
         
         try {
+            setIsLoading(true)
             const postRequest = await fetch(`https://cadence-fitness-default-rtdb.firebaseio.com/${uid}/workouts/${date.getFullYear()}/${date.getMonth()}/${date}/${exercise}/.json?auth=${token}`,{
                 method: "POST",
                 body: JSON.stringify(wo)
@@ -85,12 +87,21 @@ const LogPage = () =>{
 
             const postResponse = await postRequest.json()
 
-            console.log(postResponse)
+            if(postResponse)
+            {
+                setTimeout(()=>{
+                    setReps(0)
+                    setIsLoading(false)
+                },1000)
+            }else{
+                throw new Error('error posting exercise')
+            }
+
         } catch (error) {
             console.log(error)
+            setReps(0)
+            setIsLoading(false)
         }
-
-        console.log(wo)
     }
 
     return(
@@ -112,13 +123,20 @@ const LogPage = () =>{
                     placeholder='reps completed'
                     keyboardType='number-pad'
                     onChangeText={updateRepsHandler}
+                    value={ reps > 0 ? reps.toString() : '0'}
                 />
+                {!isLoading ? 
                 <Pressable
                     style={logPageStyles.btn}
                     onPress={onSubmitHanlder}
                 >
                     <CustomText info='sumbit' color='white' size={20} />
-                </Pressable>
+                </Pressable> : 
+                <ActivityIndicator
+                    color='lightgreen'
+                    size='large'
+                />
+                }
                 <LinearGradient
                     // Background Linear Gradient
                     colors={['rgb(0, 58, 116)', 'rgb(0, 127, 255)']}

@@ -1,16 +1,20 @@
 import { StyleSheet, Dimensions,Platform } from "react-native";
+import { Header } from 'react-navigation-stack'
 
-const topMargin = Dimensions.get('window').height * .119
+const headerHeight = Header.HEIGHT;
+const topMargin = headerHeight
+const drawerHeight = Dimensions.get('window').height - headerHeight
 
 const navBarStyle = StyleSheet.create({
     
     navBar: {
         zIndex:5,
-        elevation: (Platform.OS === 'android') ? 5 : 0,
+        //elevation: (Platform.OS === 'android') ? 5 : 0,
         position:'absolute',
         top:topMargin,
         width: '50%',
-        height: Dimensions.get('window').height - topMargin,
+        //height: Dimensions.get('window').height - topMargin,
+        height: drawerHeight,
         display: 'flex',
         flexDirection:'column',
         margin: 0,
