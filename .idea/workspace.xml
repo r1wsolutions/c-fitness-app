@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="791104ea-f9ea-4526-a9e3-0a0b5b7a54ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +44,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1638980155343" />
-    <state x="-6" y="75" width="1290" height="624" key="AVDManager" timestamp="1639200076121">
+    <state x="-6" y="75" width="1290" height="624" key="AVDManager" timestamp="1639284552499">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="-7" y="63" width="1291" height="624" key="AVDManager/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1639145625366" />
-    <state x="-6" y="75" width="1290" height="624" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1639200076121" />
+    <state x="-6" y="75" width="1290" height="624" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1639284552499" />
   </component>
 </project>
