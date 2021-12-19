@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import {customWoListReducerSliceActions} from '../../store/customWoListReducerSlice'
 
-const LogPage = () =>{
+const LogPage = (props) =>{
 
     const uid = useSelector((state) => state.authReducer.uid)
     const token = useSelector((state) => state.authReducer.authToken)
@@ -58,6 +58,8 @@ const LogPage = () =>{
     }
 
     const onSubmitHanlder = async () =>{
+
+
         if(exercise.length < 1)
         {
             console.log('no exercise selected')

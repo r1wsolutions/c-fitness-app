@@ -1,39 +1,24 @@
-import React from 'react'
-import {Text, StyleSheet} from 'react-native'
-import * as Font from 'expo-font'
+import React,{ useState, useEffect }  from 'react'
+import {View, Text,StyleSheet} from 'react-native'
 
-import { useState, useEffect } from 'react'
+import { useFonts,Graduate_400Regular} from '@expo-google-fonts/graduate'
+ 
 
-
+const IsLoading = () => {
+    return (
+        <View style={{justifyContent:'center',alignItems:'center'}}>
+            <Text>LOADING...</Text>
+        </View>
+    )
+}
 
 const CustomText = (props) =>{
    
-    const [fontLoaded, setFontLoaded] = useState(false)
+    //const [fontLoaded, setFontLoaded] = useState(false)
+    const [fontLoaded] = useFonts({
+        Graduate_400Regular
+    })
 
-    useEffect(()=>{
-        const fetchFonts = async () =>{
-
-            try {
-             
-                await Font.loadAsync({
-                    'Graduate-Regular': require('../../../assets/fonts/Graduate-Regular.ttf')
-                })
-                    .then((res)=>{
-                        setFontLoaded(true)
-                    })
-                    .catch((err)=>{
-                        throw err
-                    })
-    
-
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        fetchFonts() 
-    },[])
- 
      return(
         <>
         {fontLoaded ? <Text
@@ -48,7 +33,7 @@ const CustomText = (props) =>{
 const customFontStyle = (props) => StyleSheet.create({
     customFont:{
         color: props.color ? props.color : 'black',
-        fontFamily: 'Graduate-Regular',
+        fontFamily: 'Graduate_400Regular',
         fontSize: props.size ? props.size : 14,
         textShadowColor: props.shadow ? props.shadow : 0,
         textShadowOffset: { width: 0, height: 0 },

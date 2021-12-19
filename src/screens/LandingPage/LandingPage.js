@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { View,Image, StyleSheet,Alert,Pressable, TextInput, ActivityIndicator } from 'react-native'
+import { View,Image, StyleSheet,Alert,Pressable, TextInput, ActivityIndicator, Text, Dimensions } from 'react-native'
 import {signinAction} from '../../store/authActions'
 import CustomText from '../../components/CustomText/CustomText'
 import splashImage from  '../../../assets/images/splash_01.jpg'
 
+
+import {LineChart} from 'react-native-chart-kit'
 
 const LandingPage = (props) =>{
 
@@ -17,7 +19,6 @@ const LandingPage = (props) =>{
     const [passwordInpStarted,setPasswordInpStarted] = useState(false)
     const [passwordIsValid,setPasswordIsVald] = useState(false)
     const [requestSubmitted,setRequestSubmitted] = useState(false)
-
 
 
     const emailInpHandler =(txt) =>{
