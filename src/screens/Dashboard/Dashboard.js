@@ -1,8 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import DashBtn from '../../components/Dashboard/DashBtn'
+import AllWoList from '../../components/Dashboard/AllWorkoutsList'
+import CustomQuery from '../../components/Dashboard/CustomQuery'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+
+    const [showList, setShowList] = useState(true)
+    
+    const showListHanlder = () => {    
+        setShowList(true)
+    }
+
+    const showCustomHanlder = () =>{
+        setShowList(false)
+    }
+
+    const navHandler = (route) => {
+        props.navigation.navigate(route)
+    }
+
     return (
         <View
             style={styles.wrapper}
@@ -10,8 +27,10 @@ const Dashboard = () => {
            
             <View
                 style={styles.top}
-            >
-                <Text>DASH</Text>
+            >                
+                {showList ?  <AllWoList
+                                onClick={navHandler}    
+                            /> : <CustomQuery />}
             </View>
             <View
                 style={styles.bottom}
@@ -19,6 +38,7 @@ const Dashboard = () => {
                 <DashBtn
                     title='list'
                     iconName='clipboard-list-outline'
+                    onClick={showListHanlder}
                 />   
                 <View style={styles.divider}>
                     <View style={styles.line}></View>
@@ -26,7 +46,8 @@ const Dashboard = () => {
                 <DashBtn
                     title='custom'
                     iconName='graph'
-                /> 
+                    onClick={showCustomHanlder}
+                />  
             </View>
         </View>
     )
@@ -42,7 +63,6 @@ const styles = StyleSheet.create({
 
     },
     top:{
-        backgroundColor: 'orange',
         width:'100%',
         height:'90%'
     },
@@ -60,7 +80,8 @@ const styles = StyleSheet.create({
         height:'100%',
         flexDirection:'column',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor: '#fd8f3b'
     },
     line:{
         height:'95%',

@@ -4,7 +4,10 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 const DashBtn = (props) =>{
     return(
-        <Pressable style={styles.btn}>
+        <Pressable 
+            style={styles.btn}
+            onPress={props.onClick}
+        >
             <MaterialCommunityIcons name={props.iconName} size={24} color="gray" />
             <Text>{props.title}</Text>
         </Pressable>
@@ -17,7 +20,8 @@ const styles = StyleSheet.create({
         height:'100%',
         flexDirection:'row',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        backgroundColor:'#fd8f3b'
     },
 })
 

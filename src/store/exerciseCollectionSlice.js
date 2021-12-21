@@ -1,6 +1,7 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialExercisesState = {
+    allWorkouts: [],
     exerciseCollection: [],
     dailyWorkoutCollection: [],
     didSetDay: false,
@@ -12,6 +13,9 @@ const exerciseCollectionSlice = createSlice({
     initialState: initialExercisesState,
     name: 'exerciseSlice',
     reducers:{
+        addAllWorkouts(state,action){
+            state.allWorkouts = action.payload.allWorkouts
+        },
         addExercise(state,action){
             state.exerciseCollection.push(action.payload.excercise)
         },

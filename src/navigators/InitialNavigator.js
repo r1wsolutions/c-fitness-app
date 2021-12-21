@@ -9,7 +9,6 @@ const InitialNavigator = createStackNavigator({
        navigationOptions:{
            headerTitle:'Cadence Fitness'
        }
-       
     },
    AuthPage: {
        screen: AuthPage,

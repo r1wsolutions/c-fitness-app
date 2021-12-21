@@ -1,17 +1,8 @@
-import React,{ useState, useEffect }  from 'react'
-import {View, Text,StyleSheet} from 'react-native'
+import React  from 'react'
+import {Text,StyleSheet} from 'react-native'
 
 import { useFonts,Graduate_400Regular} from '@expo-google-fonts/graduate'
  
-
-const IsLoading = () => {
-    return (
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-            <Text>LOADING...</Text>
-        </View>
-    )
-}
-
 const CustomText = (props) =>{
    
     //const [fontLoaded, setFontLoaded] = useState(false)

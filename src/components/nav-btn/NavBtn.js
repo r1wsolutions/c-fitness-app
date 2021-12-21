@@ -20,7 +20,13 @@ const NavBtn = (props) => {
                     width:'80%'
                 }}
             >
-                <Text>{props.title}</Text>
+                <Text
+                    style={{ 
+                        fontSize:20
+                    }}
+                >
+                    {props.title}
+                </Text>
             </View>
 
             <View
@@ -30,7 +36,7 @@ const NavBtn = (props) => {
                     alignItems:'center'
                 }}
             >
-                <MaterialCommunityIcons name={props.iconName} size={24} color="black" />
+                <MaterialCommunityIcons name={props.iconName} size={28} color="black" />
             </View>
             
         </Pressable>

@@ -6,6 +6,7 @@ import {gestureHandlerRootHOC} from 'react-native-gesture-handler'
 
 import LogPage from '../screens/LogPage/LogPage'
 import Dashboard from '../screens/Dashboard/Dashboard';
+import DayDetails from '../components/DayDetails/DayDetails';
 import NavBtn from '../components/nav-btn/NavBtn';
 
 const ContentComponent = (props) => {
@@ -64,6 +65,9 @@ const screens = {
     },
     Dashboard:{
         screen:Dashboard
+    },
+    DayDetails:{
+        screen:DayDetails
     }
 }
 
