@@ -1,12 +1,14 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {retrieveExerciseCollection} from '../../store/exerciseCollectionActions'
+import {exerciseCollectionActions} from '../../store/exerciseCollectionSlice'
 import {View, Text, Pressable, StyleSheet, FlatList, SafeAreaView, Dimensions, ActivityIndicator} from 'react-native'
 import { useFonts,Graduate_400Regular} from '@expo-google-fonts/graduate'
 
 const AllWoList = (props) => {
 
     const dispatch = useDispatch()
+    const [isLoading, setIsLoading] = useState(true)
     const uid = useSelector((state)=>state.authReducer.uid)
     const token = useSelector((state)=>state.authReducer.authToken)
     const allWorkouts = useSelector((state)=>state.exerciseCollectionReducer.allWorkouts)
@@ -15,14 +17,16 @@ const AllWoList = (props) => {
         Graduate_400Regular
     })
 
-    useEffect(()=>{
+    useEffect( async ()=>{
         const getAllWorkouts = async () =>{
-            await dispatch(retrieveExerciseCollection(uid,token))
+            dispatch(retrieveExerciseCollection(uid,token))
         }
         if(allWorkouts.length < 1)
         {
-            getAllWorkouts()
+            await getAllWorkouts()
+            setIsLoading(false)
         }
+        setIsLoading(false)
         
     },[uid,token])
 
@@ -33,15 +37,22 @@ const AllWoList = (props) => {
         />
     </View>
 
-    const navigateDetailsHanlder = () =>{
-        props.onClick('DayDetails')
+    const navigateDetailsHanlder = (index,snapshot,date) =>{
+        props.onClick('DayDetails',{
+            index: index,
+            snapshot: snapshot,
+            date: date
+        })
     }
 
     const listItem = (wo) => {
 
         return <Pressable 
                     style={styles.listItem}
-                    onPress={navigateDetailsHanlder}    
+                    onPress={()=>{
+                        dispatch(exerciseCollectionActions.setDidSetDay({status:false}))
+                        navigateDetailsHanlder(wo.item.index,wo.item.daySnapshot,wo.item.date)
+                    }}    
                 >            
                     <View style={styles.section}
                         ><Text>{wo.item.date}</Text>
@@ -64,7 +75,7 @@ const AllWoList = (props) => {
                 </Pressable>    
     }
     return (
-        allWorkouts.length < 1 ? loader : <SafeAreaView style={styles.wrapper}>
+        isLoading ? loader : <SafeAreaView style={styles.wrapper}>
             <Text>All Workouts</Text>
             <FlatList
                 style={{height:'100%'}} 

@@ -44,6 +44,7 @@ const authReducer = createSlice({
             state.uid = ''
             state.autoSignOutTime = null
             state.isSignedIn = false
+            state.profile = null
         },
         checkAuthStatus(state, action){
 

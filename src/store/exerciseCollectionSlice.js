@@ -3,7 +3,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 const initialExercisesState = {
     allWorkouts: [],
     exerciseCollection: [],
-    dailyWorkoutCollection: [],
+    dailyWorkoutCollection: [], 
     didSetDay: false,
     didRetrieveExercises: null,
     errorMessage: ''
@@ -64,8 +64,19 @@ const exerciseCollectionSlice = createSlice({
         clearDailyWorkout(state,action){
             state.dailyWorkoutCollection = []
         },
+        setDailyWorkouts(state,action){
+            state.dailyWorkoutCollection = action.payload.daySnapshot
+            state.didSetDay = true
+        },
         setDidSetDay(state,action){
             state.didSetDay = action.payload.status
+            state.dailyWorkoutCollection = []
+        },
+        clearAll(state,action){
+            state.didSetDay = false
+            state.allWorkouts = []
+            state.exerciseCollection = []
+            state.dailyWorkoutCollection = []
         }
     }
 })

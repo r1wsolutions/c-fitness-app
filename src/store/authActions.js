@@ -122,13 +122,11 @@ export const getProfileAction =(uid,token) => {
 
     return async (dispatch) => {
 
-        if(!token) return
         
         try {
             const postRequest = await fetch(`https://cadence-fitness-default-rtdb.firebaseio.com/${uid}/profile.json?auth=${token}`,{
                 method: "GET"
             })
-
             
             const postResponse = await postRequest.json()
 

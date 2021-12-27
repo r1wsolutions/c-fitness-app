@@ -16,8 +16,8 @@ const Dashboard = (props) => {
         setShowList(false)
     }
 
-    const navHandler = (route) => {
-        props.navigation.navigate(route)
+    const navHandler = (route,param) => {
+        props.navigation.navigate(route,param)
     }
 
     return (

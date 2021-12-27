@@ -6,6 +6,7 @@ export const retrieveExerciseCollection =(uid, token) =>{
         try {
             const fetchRequest = await fetch('https://cadence-fitness-default-rtdb.firebaseio.com/'+uid+'/workouts.json?auth='+token)
             const tempArray = []
+            let index = 0
 
             if(!fetchRequest.ok)
             {
@@ -24,10 +25,12 @@ export const retrieveExerciseCollection =(uid, token) =>{
                         const day = new Date(date)
 
                         const objToAdd = {
-                            date: `${day.getMonth()} - ${day.getDate()} - ${day.getFullYear()}`,
+                            dateRaw: day.toISOString(),
+                            date: `${day.getMonth()+1} - ${day.getDate()} - ${day.getFullYear()}`,
                             exercisesPerformed: 0,
                             setsCompleted: 0,
-                            repsCompleted: 0
+                            repsCompleted: 0,
+                            daySnapshot: completedRequest[year][month][date] 
                         }
 
                         for(const exObj in completedRequest[year][month][date])
@@ -38,27 +41,22 @@ export const retrieveExerciseCollection =(uid, token) =>{
                             {
                                 objToAdd.setsCompleted++
 
-                                for(const rep in completedRequest[year][month][date][exObj][set])
-                                {
-                                    objToAdd.repsCompleted+= parseInt(completedRequest[year][month][date][exObj][set].amount)
-                                }
+                                objToAdd.repsCompleted+= parseInt(completedRequest[year][month][date][exObj][set].amount)
                             }
                         }
 
                         tempArray.push(objToAdd)
+                        index++
                     }
                 }
             }
             // console.log('temp arr')
             // console.log(tempArray)
 
+            tempArray.sort((a,b)=> new Date(b.dateRaw) - new Date(a.dateRaw))
             dispatch(exerciseCollectionActions.addAllWorkouts({allWorkouts: tempArray}))
 
             return
-
-            dispatch(exerciseCollectionActions.replaceExcerciseCollection({
-                exerciseCollection: completedRequest
-            }))
 
         } catch (error) {
            console.log('error retr items')

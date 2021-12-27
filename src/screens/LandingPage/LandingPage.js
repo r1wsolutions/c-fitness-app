@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react' 
 import { useDispatch } from 'react-redux'
 import { View,Image, StyleSheet,Alert,Pressable, TextInput, ActivityIndicator, Text, Dimensions } from 'react-native'
 import {signinAction} from '../../store/authActions'
@@ -20,6 +20,24 @@ const LandingPage = (props) =>{
     const [passwordIsValid,setPasswordIsVald] = useState(false)
     const [requestSubmitted,setRequestSubmitted] = useState(false)
 
+
+    const demoSignInHandler = () =>{
+        const credentials = {
+            email: 'test01@test.com',
+            password: '11111111'
+        }
+
+        setRequestSubmitted(true)//similar to loading...
+        dispatch(signinAction(credentials.email, credentials.password))
+            .then((res)=>{
+            })
+            .catch((err)=>{
+                setTimeout(()=>{
+                    setRequestSubmitted(false)
+                },2000)
+                signInAlertHandler({title:'ERROR',details:err.message})
+            })
+    }
 
     const emailInpHandler =(txt) =>{
 
@@ -164,6 +182,11 @@ const LandingPage = (props) =>{
                         {
                             !passwordIsValid && passwordInpStarted && <CustomText color='white' info='please enter a valid password' />
                         }
+                        <Pressable
+                            onPress={demoSignInHandler}
+                        >
+                            <Text>DEMO</Text>
+                        </Pressable>
                     </View>
 
                     <View style={landingPageStyle.existingUsers}>

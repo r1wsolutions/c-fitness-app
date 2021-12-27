@@ -1,6 +1,7 @@
 import React  from 'react'
 import {Text,StyleSheet} from 'react-native'
 
+
 import { useFonts,Graduate_400Regular} from '@expo-google-fonts/graduate'
  
 const CustomText = (props) =>{
@@ -31,6 +32,10 @@ const customFontStyle = (props) => StyleSheet.create({
         textShadowRadius:4
     }
 })
+
+const BasicText = (props) => {
+    return (<Text style={{color:'red'}}>{props.info}</Text>)
+}
 
 export default CustomText
 
